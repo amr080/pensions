@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pension Math</title>
+  <style>
+    body { font-family: monospace; max-width: 600px; margin: 20px auto; }
+    input { width: 100%; margin: 10px 0; }
+    div { margin: 5px 0; }
+    .red { color: #ff4444; }
+    .green { color: #44ff44; }
+  </style>
+</head>
+<body>
+  <input type="number" value="40" id="payment" min="0" step="1">
+  
+  <div>🔥 Sale Scenario</div>
+  <div>Assets: <span id="saleAssets">100</span></div>
+  <div>Liabilities: <span id="saleLiab">150</span></div>
+  <div>Ratio: <span id="saleRatio">66.67</span>%</div>
+  
+  <div>🛡️ Stablecoin</div>
+  <div>Assets: <span id="stableAssets">100</span></div>
+  <div>Liabilities: <span id="stableLiab">150</span></div>
+  <div>Ratio: <span id="stableRatio">66.67</span>%</div>
+  <div class="green">Yield: $<span id="yield">0.80</span></div>
+
+<script>
+const update = (payment = 40) => {
+  // Core formulas
+  const saleAmount = payment / 0.9  // 10% loss: ÷(1 - 0.10)
+  const saleAssets = 100 - saleAmount
+  const saleLiab = 150 - payment
+  const saleRatio = (saleAssets / saleLiab * 100).toFixed(2)
+  
+  const stableLiab = 150 - payment
+  const stableRatio = (100 / stableLiab * 100).toFixed(2)
+  const netYield = payment * (0.05 - 0.03)  // 2% net
+
+  // Update display
+  document.getElementById('saleAssets').textContent = saleAssets.toFixed(2)
+  document.getElementById('saleLiab').textContent = saleLiab
+  document.getElementById('saleRatio').textContent = saleRatio
+  
+  document.getElementById('stableLiab').textContent = stableLiab
+  document.getElementById('stableRatio').textContent = stableRatio
+  document.getElementById('yield').textContent = netYield.toFixed(2)
+}
+
+document.getElementById('payment').addEventListener('input', (e) => {
+  update(parseFloat(e.target.value))
+})
+update()
+</script>
+</body>
+</html>
