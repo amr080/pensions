@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Math Flows</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Sale Scenario
+      const assets = 100;
+      const liabilities = 150;
+      const saleAmount = 20;
+      const lossPercent = 0.10;
+      const proceeds = saleAmount * (1 - lossPercent);
+      const newAssetsSale = assets - saleAmount + proceeds;
+      const newLiabilitiesSale = liabilities - saleAmount;
+      const fundingRatioSale = newAssetsSale / newLiabilitiesSale;
+
+      // Stablecoin Scenario
+      const borrowAmount = 20;
+      const yieldRate = 0.05;
+      const costRate = 0.03;
+      const newAssetsStable = assets;
+      const newLiabilitiesStable = liabilities - borrowAmount;
+      const fundingRatioStable = newAssetsStable / newLiabilitiesStable;
+      const netYield = borrowAmount * (yieldRate - costRate);
+
+      // Output
+      document.getElementById('sale_assets').textContent = newAssetsSale.toFixed(2);
+      document.getElementById('sale_liabilities').textContent = newLiabilitiesSale.toFixed(2);
+      document.getElementById('sale_ratio').textContent = (fundingRatioSale * 100).toFixed(2) + '%';
+
+      document.getElementById('stable_assets').textContent = newAssetsStable.toFixed(2);
+      document.getElementById('stable_liabilities').textContent = newLiabilitiesStable.toFixed(2);
+      document.getElementById('stable_ratio').textContent = (fundingRatioStable * 100).toFixed(2) + '%';
+      document.getElementById('net_yield').textContent = netYield.toFixed(2);
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <table class="flow-table">
+      <tr>
+        <th colspan="2">Sale Scenario</th>
+      </tr>
+      <tr>
+        <td>Assets</td>
+        <td id="sale_assets"></td>
+      </tr>
+      <tr>
+        <td>Liabilities</td>
+        <td id="sale_liabilities"></td>
+      </tr>
+      <tr>
+        <td>Funding Ratio</td>
+        <td id="sale_ratio"></td>
+      </tr>
+    </table>
+    <table class="flow-table">
+      <tr>
+        <th colspan="2">Stablecoin Scenario</th>
+      </tr>
+      <tr>
+        <td>Assets</td>
+        <td id="stable_assets"></td>
+      </tr>
+      <tr>
+        <td>Liabilities</td>
+        <td id="stable_liabilities"></td>
+      </tr>
+      <tr>
+        <td>Funding Ratio</td>
+        <td id="stable_ratio"></td>
+      </tr>
+      <tr>
+        <td>Net Yield</td>
+        <td id="net_yield"></td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
