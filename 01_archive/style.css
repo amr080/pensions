@@ -1,0 +1,29 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  background: #fff;
+  color: #000;
+  margin: 20px;
+}
+
+.container {
+  display: flex;
+  gap: 20px;
+}
+
+table.flow-table {
+  border-collapse: collapse;
+  width: auto;
+}
+
+table.flow-table th,
+table.flow-table td {
+  border: 1px solid #000;
+  padding: 4px 8px;
+  text-align: left;
+}
+
+table.flow-table th {
+  background: #eee;
+  font-weight: bold;
+}
